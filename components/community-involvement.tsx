@@ -68,6 +68,14 @@ export function CommunityInvolvement() {
         {/* A closing quotation used to sit here, signed "Art Ibleto & Family".
             He did not say it. If the family wants a statement in their own words,
             it goes in lib/content.ts and gets attributed properly. */}
+
+        {/* Art's charitable work across Sonoma County is well documented, and the
+            restaurant's own site referred to it. These four specific programmes are
+            not confirmed, so the section carries a marker until the family verifies
+            them or replaces them with the real ones. */}
+        <p className="text-center text-xs uppercase tracking-wider text-muted-foreground">
+          Community programmes to confirm with the family
+        </p>
       </div>
     </section>
   )
