@@ -1,67 +1,33 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Star, Flame, Info } from "lucide-react"
-import { NutritionalInfoModal } from "./nutritional-info-modal"
+import { Star, Flame } from "lucide-react"
 import Link from "next/link"
+import { menu } from "@/lib/content"
 
 export function FeaturedItems() {
-  const [selectedItem, setSelectedItem] = useState<any>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const featuredDishes = [
-    {
-      name: "Spaghetti Half & Half",
-      description:
-        "Our signature dish - half meat sauce, half marinara. A Harvest Fair favorite that's been winning hearts for decades.",
-      price: "$18.95",
-      image: "/spaghetti-half-and-half-with-meat-sauce-and-marina.png",
-      badges: ["Fair Favorite", "Signature"],
+  // Real signature dishes with real prices, pulled from lib/content.ts. The four
+  // dishes that used to sit here were part invented (Osso Buco at $28.95 is not on
+  // the menu) and part mispriced (Half & Half was $18.95 against a real $19, Baked
+  // Polenta $19.95 against a real $16). Badges like "Award Winner" and "Sunday
+  // Special" had no source and are gone.
+  const signatureNames = ["Spaghetti Half & Half", "Baked Polenta", "Margherita"]
+  const featuredDishes = menu.value
+    .flatMap((category) => category.items)
+    .filter((item) => signatureNames.includes(item.name))
+    .map((item) => ({
+      name: item.name,
+      description: item.description ?? "",
+      price: item.price,
+      image: null as string | null,
+      badges: [] as string[],
       isSpicy: false,
-      isSignature: true,
-    },
-    {
-      name: "Wood-Fired Margherita Pizza",
-      description:
-        "Fresh mozzarella, San Marzano tomatoes, and basil on our hand-tossed dough, cooked in our authentic wood-fired oven.",
-      price: "$16.95",
-      image: "/wood-fired-margherita-pizza-with-fresh-basil-and-m.png",
-      badges: ["Wood-Fired"],
-      isSpicy: false,
-      dietary: ["V"],
-      isSignature: true,
-    },
-    {
-      name: "Baked Polenta",
-      description:
-        "Award-winning creamy polenta baked with Italian sausage, mushrooms, and three cheeses. A true comfort food masterpiece.",
-      price: "$19.95",
-      image: "/baked-polenta-with-italian-sausage-and-melted-chee.png",
-      badges: ["Award Winner", "Pasta King's Choice"],
-      isSpicy: false,
-      dietary: ["GF"],
-      isSignature: true,
-    },
-    {
-      name: "Osso Buco",
-      description:
-        "Tender braised veal shanks in a rich tomato and wine sauce, served with creamy risotto. A Sunday special that sells out fast.",
-      price: "$28.95",
-      image: "/osso-buco-braised-veal-shank-with-risotto.png",
-      badges: ["Sunday Special", "Premium"],
-      isSpicy: false,
-      dietary: ["GF"],
-      isSignature: true,
-    },
-  ]
-
-  const handleMoreInfo = (dish: any) => {
-    setSelectedItem(dish)
-    setIsModalOpen(true)
-  }
+      isSignature: item.signature ?? false,
+    }))
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,60 +62,36 @@ export function FeaturedItems() {
           {featuredDishes.map((dish, index) => (
             <Card
               key={index}
-              className="featured-card group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-none shadow-lg overflow-hidden flex flex-col opacity-0"
+              className="featured-card group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-none shadow-lg overflow-hidden flex flex-col"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={dish.image || "/placeholder.svg"}
-                  alt={dish.name}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-                  {dish.badges.map((badge, badgeIndex) => (
-                    <Badge
-                      key={badgeIndex}
-                      className={`text-xs transition-all duration-300 hover:scale-105 ${
-                        badge.includes("Award") || badge.includes("Signature")
-                          ? "bg-primary text-primary-foreground animate-pulse"
-                          : badge.includes("Special")
-                            ? "bg-secondary text-secondary-foreground"
-                            : "bg-accent text-accent-foreground"
-                      }`}
-                    >
-                      {badge.includes("Award") && <Star className="w-3 h-3 mr-1" />}
-                      {badge}
-                    </Badge>
-                  ))}
+              {/* Real photography replaces this once the restaurant supplies it. */}
+              {dish.image && (
+                <div className="relative overflow-hidden">
+                  <img
+                    src={dish.image}
+                    alt={dish.name}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
-                {dish.isSpicy && (
-                  <div className="absolute top-3 right-3">
-                    <Flame className="h-5 w-5 text-orange-500 animate-pulse" />
-                  </div>
-                )}
-              </div>
+              )}
 
               <CardContent className="p-6 flex flex-col flex-1">
-                <div className="flex justify-between items-start mb-3">
+                <div className="flex justify-between items-start mb-3 gap-3">
                   <h3 className="font-serif text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                     {dish.name}
                   </h3>
-                  <span className="font-bold text-primary text-lg group-hover:scale-110 transition-transform duration-300">
-                    {dish.price}
-                  </span>
+                  <span className="font-bold text-primary text-lg whitespace-nowrap">{dish.price}</span>
                 </div>
 
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-1">{dish.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed flex-1">{dish.description}</p>
 
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent mt-auto transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                  onClick={() => handleMoreInfo(dish)}
-                >
-                  <Info className="w-4 h-4 mr-2" />
-                  More Info & Nutrition
-                </Button>
+                {dish.isSignature && (
+                  <p className="mt-4 text-xs uppercase tracking-wider text-primary flex items-center">
+                    <Star className="w-3 h-3 mr-1" />
+                    House signature
+                  </p>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -167,10 +109,6 @@ export function FeaturedItems() {
           </Link>
         </div>
       </div>
-
-      {selectedItem && (
-        <NutritionalInfoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} item={selectedItem} />
-      )}
 
       <style jsx>{`
         @keyframes fade-in-up {

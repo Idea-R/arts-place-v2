@@ -40,7 +40,9 @@ export default function AdminLogin() {
             <ChefHat className="w-8 h-8 text-white" />
           </div>
           <CardTitle className="text-2xl font-bold text-italian-red">Art's Place Admin</CardTitle>
-          <CardDescription>Sign in to manage your restaurant</CardDescription>
+          <CardDescription>
+            Interface preview only. This screen does not manage anything yet.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
@@ -76,8 +78,16 @@ export default function AdminLogin() {
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
+          {/* This screen is a visual mock. The check below runs in the browser against
+              hardcoded values, there is no account system behind it, and the dashboard
+              it opens does not save anything. Labelled plainly so nobody demonstrates
+              it as a working content manager. Real menu editing lives in
+              lib/content.ts today. */}
           <div className="mt-4 text-center text-sm text-muted-foreground">
-            Demo credentials: admin@artsplace.com / pastaking
+            Demo only: admin@artsplace.com / pastaking
+            <span className="block mt-2 text-xs">
+              No data is saved. Menu content is edited in the codebase for now.
+            </span>
           </div>
         </CardContent>
       </Card>

@@ -5,214 +5,42 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { Search, Star, Leaf, Wheat, Info } from "lucide-react"
-import { NutritionalInfoModal } from "./nutritional-info-modal"
+import { Search, Star } from "lucide-react"
+import { menu } from "@/lib/content"
 
 export function MenuCategories() {
-  const [activeCategory, setActiveCategory] = useState("pasta")
+  const [activeCategory, setActiveCategory] = useState(menu.value[0]?.id ?? "starters")
   const [searchTerm, setSearchTerm] = useState("")
-  const [dietaryFilter, setDietaryFilter] = useState<string[]>([])
-  const [selectedItem, setSelectedItem] = useState<any>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const categories = [
-    { id: "appetizers", name: "Appetizers", count: 8 },
-    { id: "pasta", name: "Pasta & Entrees", count: 15 },
-    { id: "pizza", name: "Wood-Fired Pizza", count: 12 },
-    { id: "desserts", name: "Desserts", count: 6 },
-    { id: "beverages", name: "Beverages", count: 10 },
-  ]
+  // Menu content comes from lib/content.ts, transcribed from the restaurant's own
+  // published menu. It used to be hardcoded here: about twenty invented dishes,
+  // including an Osso Buco at $28.95 that the kitchen does not serve, and real dishes
+  // priced wrongly (Baked Polenta was listed at $19.95 against a real $16).
+  //
+  // Dietary badges are deliberately NOT inferred. The previous version marked dishes
+  // "GF" and "V" with no source behind it. An unverified allergen claim on a
+  // restaurant menu is a safety problem, not a formatting detail. Badges return only
+  // when the kitchen confirms each dish.
+  const categories = menu.value.map((category) => ({
+    id: category.id,
+    name: category.name,
+    count: category.items.length,
+  }))
 
-  const menuItems = {
-    appetizers: [
-      {
-        name: "Antipasto Platter",
-        description: "Selection of Italian meats, cheeses, olives, and marinated vegetables",
-        price: "$16.95",
-        image: "/antipasto-platter-with-italian-meats-and-cheeses.png",
-        dietary: ["GF"],
-        isSignature: false,
-      },
-      {
-        name: "Bruschetta Trio",
-        description: "Three varieties: classic tomato basil, mushroom truffle, and roasted pepper",
-        price: "$12.95",
-        image: "/bruschetta-trio-with-tomato-basil-and-toppings.png",
-        dietary: ["V"],
-        isSignature: false,
-      },
-      {
-        name: "Calamari Fritti",
-        description: "Crispy fried squid rings with spicy marinara and lemon aioli",
-        price: "$14.95",
-        image: "/calamari-fritti-with-marinara-sauce.png",
-        dietary: [],
-        isSignature: false,
-      },
-      {
-        name: "Arancini",
-        description: "Sicilian rice balls stuffed with mozzarella, served with marinara",
-        price: "$11.95",
-        image: "/arancini-sicilian-rice-balls-with-mozzarella.png",
-        dietary: ["V"],
-        isSignature: true,
-      },
-    ],
-    pasta: [
-      {
-        name: "Spaghetti Half & Half",
-        description: "Our signature dish - half meat sauce, half marinara. A Harvest Fair favorite!",
-        price: "$18.95",
-        image: "/spaghetti-half-and-half-with-meat-sauce-and-marina.png",
-        dietary: [],
-        isSignature: true,
-      },
-      {
-        name: "Baked Polenta",
-        description: "Award-winning creamy polenta with Italian sausage, mushrooms, and three cheeses",
-        price: "$19.95",
-        image: "/baked-polenta-with-italian-sausage-and-melted-chee.png",
-        dietary: ["GF"],
-        isSignature: true,
-      },
-      {
-        name: "Osso Buco",
-        description: "Braised veal shanks in rich tomato wine sauce, served with creamy risotto",
-        price: "$28.95",
-        image: "/osso-buco-braised-veal-shank-with-risotto.png",
-        dietary: ["GF"],
-        isSignature: true,
-      },
-      {
-        name: "Fettuccine Alfredo",
-        description: "Fresh fettuccine in our house-made cream sauce with Parmigiano-Reggiano",
-        price: "$16.95",
-        image: "/fettuccine-alfredo-with-parmesan-cheese.png",
-        dietary: ["V"],
-        isSignature: false,
-      },
-      {
-        name: "Lasagna della Casa",
-        description: "Traditional meat lasagna with ricotta, mozzarella, and our signature meat sauce",
-        price: "$21.95",
-        image: "/traditional-meat-lasagna-with-ricotta-and-mozzarel.png",
-        dietary: [],
-        isSignature: false,
-      },
-      {
-        name: "Chicken Parmigiana",
-        description: "Breaded chicken breast with marinara and mozzarella, served with spaghetti",
-        price: "$22.95",
-        image: "/chicken-parmigiana-with-spaghetti-and-marinara.png",
-        dietary: [],
-        isSignature: false,
-      },
-    ],
-    pizza: [
-      {
-        name: "Margherita",
-        description: "San Marzano tomatoes, fresh mozzarella, basil, extra virgin olive oil",
-        price: "$16.95",
-        image: "/wood-fired-margherita-pizza-with-fresh-basil-and-m.png",
-        dietary: ["V"],
-        isSignature: true,
-      },
-      {
-        name: "Pepperoni Classico",
-        description: "House-made pepperoni, mozzarella, and our signature pizza sauce",
-        price: "$18.95",
-        image: "/pepperoni-pizza-with-mozzarella-and-tomato-sauce.png",
-        dietary: [],
-        isSignature: false,
-      },
-      {
-        name: "The Works",
-        description: "Pepperoni, sausage, mushrooms, bell peppers, onions, black olives",
-        price: "$22.95",
-        image: "/supreme-pizza-with-pepperoni-sausage-and-vegetable.png",
-        dietary: [],
-        isSignature: false,
-      },
-      {
-        name: "Quattro Stagioni",
-        description: "Four seasons pizza: artichokes, ham, mushrooms, olives on four quarters",
-        price: "$21.95",
-        image: "/quattro-stagioni-pizza-with-artichokes-and-ham.png",
-        dietary: [],
-        isSignature: true,
-      },
-      {
-        name: "Vegetarian Deluxe",
-        description: "Roasted vegetables, goat cheese, sun-dried tomatoes, fresh herbs",
-        price: "$19.95",
-        image: "/vegetarian-pizza-with-roasted-vegetables-and-goat-.png",
-        dietary: ["V"],
-        isSignature: false,
-      },
-    ],
-    desserts: [
-      {
-        name: "Tiramisu",
-        description: "Classic Italian dessert with espresso-soaked ladyfingers and mascarpone",
-        price: "$8.95",
-        image: "/classic-tiramisu-with-mascarpone-and-espresso.png",
-        dietary: ["V"],
-        isSignature: true,
-      },
-      {
-        name: "Cannoli Siciliani",
-        description: "Crispy shells filled with sweet ricotta and chocolate chips",
-        price: "$7.95",
-        image: "/cannoli-siciliani-with-ricotta-and-chocolate-chips.png",
-        dietary: ["V"],
-        isSignature: false,
-      },
-      {
-        name: "Panna Cotta",
-        description: "Vanilla bean panna cotta with seasonal berry compote",
-        price: "$7.95",
-        image: "/vanilla-panna-cotta-with-berry-compote.png",
-        dietary: ["V", "GF"],
-        isSignature: false,
-      },
-    ],
-    beverages: [
-      {
-        name: "Italian Wine Selection",
-        description: "Curated selection of Italian wines from Tuscany, Piedmont, and Veneto",
-        price: "$8-15/glass",
-        image: "/italian-wine-selection-with-glasses-and-bottles.png",
-        dietary: ["V", "GF"],
-        isSignature: false,
-      },
-      {
-        name: "Espresso & Coffee",
-        description: "Authentic Italian espresso, cappuccino, and specialty coffee drinks",
-        price: "$3-6",
-        image: "/placeholder.svg?height=300&width=400",
-        dietary: ["V", "GF"],
-        isSignature: false,
-      },
-      {
-        name: "San Pellegrino",
-        description: "Sparkling and still Italian mineral water",
-        price: "$3.95",
-        image: "/placeholder.svg?height=300&width=400",
-        dietary: ["V", "GF"],
-        isSignature: false,
-      },
-    ],
-  }
-
-  const dietaryOptions = [
-    { id: "V", label: "Vegetarian", icon: Leaf, color: "bg-accent" },
-    { id: "GF", label: "Gluten-Free", icon: Wheat, color: "bg-secondary" },
-  ]
-
-  const toggleDietaryFilter = (filter: string) => {
-    setDietaryFilter((prev) => (prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]))
-  }
+  const menuItems = Object.fromEntries(
+    menu.value.map((category) => [
+      category.id,
+      category.items.map((item) => ({
+        name: item.name,
+        description: item.description ?? "",
+        price: item.price,
+        image: null as string | null,
+        dietary: [] as string[],
+        isSignature: item.signature ?? false,
+      })),
+    ]),
+  )
 
   const handleCategoryChange = (categoryId: string) => {
     setIsLoading(true)
@@ -227,14 +55,8 @@ export function MenuCategories() {
       const matchesSearch =
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description.toLowerCase().includes(searchTerm.toLowerCase())
-      const matchesDietary = dietaryFilter.length === 0 || dietaryFilter.some((filter) => item.dietary.includes(filter))
-      return matchesSearch && matchesDietary
+      return matchesSearch
     }) || []
-
-  const handleMoreInfo = (item: any) => {
-    setSelectedItem(item)
-    setIsModalOpen(true)
-  }
 
   useEffect(() => {
     const handleResizeObserverError = (e: ErrorEvent) => {
@@ -288,20 +110,6 @@ export function MenuCategories() {
                 className="pl-10 transition-all duration-300 focus:ring-2 focus:ring-primary/20"
               />
             </div>
-            <div className="flex gap-2">
-              {dietaryOptions.map((option) => (
-                <Button
-                  key={option.id}
-                  variant={dietaryFilter.includes(option.id) ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => toggleDietaryFilter(option.id)}
-                  className={`transition-all duration-300 hover:scale-105 ${dietaryFilter.includes(option.id) ? option.color : ""}`}
-                >
-                  <option.icon className="w-4 h-4 mr-2" />
-                  {option.label}
-                </Button>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -348,57 +156,45 @@ export function MenuCategories() {
               {filteredItems.map((item, index) => (
                 <Card
                   key={index}
-                  className="menu-card group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-none shadow-lg overflow-hidden flex flex-col opacity-0"
+                  className="menu-card group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-none shadow-lg overflow-hidden flex flex-col"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.name}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-
-                    {/* Badges */}
-                    <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-                      {item.isSignature && (
-                        <Badge className="bg-primary text-primary-foreground text-xs animate-pulse">
-                          <Star className="w-3 h-3 mr-1" />
-                          Pasta King's Choice
-                        </Badge>
-                      )}
-                      {item.dietary.map((diet) => {
-                        const option = dietaryOptions.find((opt) => opt.id === diet)
-                        return option ? (
-                          <Badge key={diet} className={`${option.color} text-xs`}>
-                            <option.icon className="w-3 h-3 mr-1" />
-                            {diet}
-                          </Badge>
-                        ) : null
-                      })}
+                  {/* Photography is omitted until the restaurant supplies real photos.
+                      The generated stock images that shipped here depicted dishes the
+                      kitchen does not serve, so pairing one with a real dish name would
+                      misrepresent the plate. */}
+                  {item.image && (
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
-                  </div>
+                  )}
 
                   <CardContent className="p-6 flex flex-col flex-1">
-                    <div className="flex justify-between items-start mb-3">
+                    <div className="flex justify-between items-start mb-3 gap-4">
                       <h3 className="font-serif text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                         {item.name}
+                        {item.isSignature && (
+                          <Badge className="bg-primary text-primary-foreground text-xs ml-2 align-middle">
+                            <Star className="w-3 h-3 mr-1" />
+                            House signature
+                          </Badge>
+                        )}
                       </h3>
-                      <span className="font-bold text-primary text-lg group-hover:scale-110 transition-transform duration-300">
-                        {item.price}
-                      </span>
+                      <span className="font-bold text-primary text-lg whitespace-nowrap">{item.price}</span>
                     </div>
 
-                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-1">{item.description}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">{item.description}</p>
 
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent mt-auto transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                      onClick={() => handleMoreInfo(item)}
-                    >
-                      <Info className="w-4 h-4 mr-2" />
-                      More Info & Nutrition
-                    </Button>
+                    {/* The "More Info & Nutrition" button was removed along with the
+                        modal behind it. That modal generated calorie, protein, carb and
+                        sodium figures with Math.random() on every render and printed a
+                        fixed allergen notice on every dish regardless of ingredients.
+                        Invented nutrition and allergen information is a safety matter,
+                        not a placeholder. It returns only with real kitchen data. */}
                   </CardContent>
                 </Card>
               ))}
@@ -453,9 +249,6 @@ export function MenuCategories() {
       </div>
 
       {/* Nutritional Info Modal */}
-      {selectedItem && (
-        <NutritionalInfoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} item={selectedItem} />
-      )}
 
       <style jsx>{`
         @keyframes fade-in-up {

@@ -39,7 +39,7 @@ export function CommunityInvolvement() {
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">Giving Back</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Art's Place isn't just a restaurant—we're a proud member of the Rohnert Park community. For four decades,
+            Art's Place isn't just a restaurant, it's part of the Rohnert Park community.
             we've been committed to giving back and supporting the neighbors who have supported us.
           </p>
         </div>

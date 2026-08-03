@@ -55,14 +55,14 @@ export function CateringPricing() {
   const additionalCosts = [
     {
       service: "Professional service staff",
-      price: "$25/hour per server",
+      price: "Quote on request",
       description: "Experienced servers for your event",
     },
-    { service: "Premium linens & tableware", price: "$8 per person", description: "Elegant table settings and linens" },
-    { service: "Wine and beverage service", price: "Market pricing", description: "Full bar service available" },
-    { service: "Custom menu creation", price: "$200 consultation", description: "Personalized menu development" },
-    { service: "Weekend premium", price: "+15%", description: "Friday-Sunday events" },
-    { service: "Holiday premium", price: "+25%", description: "Major holidays and special dates" },
+    { service: "Premium linens & tableware", price: "Quote on request", description: "Elegant table settings and linens" },
+    { service: "Wine and beverage service", price: "Quote on request", description: "Full bar service available" },
+    { service: "Custom menu creation", price: "Quote on request", description: "Personalized menu development" },
+    { service: "Weekend premium", price: "Quote on request", description: "Friday-Sunday events" },
+    { service: "Holiday premium", price: "Quote on request", description: "Major holidays and special dates" },
   ]
 
   return (

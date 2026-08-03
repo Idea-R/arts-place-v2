@@ -12,7 +12,7 @@ export function ContactInfo() {
     {
       icon: Mail,
       title: "Email",
-      details: ["info@artsplacerp.com", "We respond within 24 hours"],
+      details: ["Call or use the form", "No public email address yet"],
       action: "Send Email",
     },
     {
@@ -25,7 +25,7 @@ export function ContactInfo() {
 
   const hours = [
     { day: "Monday - Thursday", time: "11:30am - 9:00pm" },
-    { day: "Friday - Saturday", time: "11:30am - 10:00pm" },
+    { day: "Friday - Saturday", time: "11:30am - 9:00pm" },
     { day: "Sunday", time: "11:30am - 9:00pm" },
   ]
 

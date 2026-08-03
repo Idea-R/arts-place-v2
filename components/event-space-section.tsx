@@ -36,7 +36,7 @@ export function EventSpaceSection() {
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               Our charming outdoor patio provides the perfect setting for your special occasions. With seating for up to
-              50 guests, twinkling lights, and the aroma of authentic Italian cuisine, your event will be unforgettable.
+              your guests, twinkling lights, and the smell of the wood fired oven, your event will be memorable.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -98,7 +98,7 @@ export function EventSpaceSection() {
 
             {/* Capacity badge */}
             <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-4 py-2 rounded-full font-semibold shadow-lg">
-              Seats up to 50 guests
+              Capacity to confirm
             </div>
           </div>
         </div>

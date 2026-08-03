@@ -12,7 +12,7 @@ export function CateringHero() {
             <div className="space-y-4">
               <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2">
                 <Award className="w-4 h-4 mr-2" />
-                40+ Years of Excellence
+                Sonoma County Catering
               </Badge>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Professional Italian <span className="text-primary">Catering Services</span>
@@ -72,15 +72,9 @@ export function CateringHero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Floating Stats */}
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-lg border">
-              <div className="text-2xl font-bold text-primary">500+</div>
-              <div className="text-sm text-muted-foreground">Events Catered</div>
-            </div>
-            <div className="absolute -top-6 -right-6 bg-card p-6 rounded-xl shadow-lg border">
-              <div className="text-2xl font-bold text-primary">4.9★</div>
-              <div className="text-sm text-muted-foreground">Client Rating</div>
-            </div>
+            {/* The floating stats here claimed "500+ Events Catered" and a "4.9 star
+                Client Rating". Neither figure came from the restaurant. Removed rather
+                than guessed; if real numbers exist, they belong in lib/content.ts. */}
           </div>
         </div>
       </div>

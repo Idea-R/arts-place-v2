@@ -8,7 +8,7 @@ export function CateringPackages() {
     {
       name: "Antipasti Package",
       description: "Perfect for cocktail receptions and networking events",
-      priceRange: "$12-18 per person",
+      priceRange: "Quote on request",
       items: [
         "Assorted bruschetta varieties",
         "Italian meat and cheese platter",
@@ -23,7 +23,7 @@ export function CateringPackages() {
     {
       name: "Pasta King's Favorites",
       description: "Our signature dishes that made Art famous",
-      priceRange: "$25-35 per person",
+      priceRange: "Quote on request",
       items: [
         "Spaghetti Half & Half",
         "Baked Polenta with sausage",
@@ -39,7 +39,7 @@ export function CateringPackages() {
     {
       name: "Wood-Fired Pizza Party",
       description: "Casual dining with our authentic wood-fired pizzas",
-      priceRange: "$20-28 per person",
+      priceRange: "Quote on request",
       items: [
         "Margherita pizza",
         "Pepperoni pizza",
@@ -55,9 +55,9 @@ export function CateringPackages() {
     {
       name: "Premium Italian Feast",
       description: "Our most elegant offering for special celebrations",
-      priceRange: "$45-65 per person",
+      priceRange: "Quote on request",
       items: [
-        "Osso Buco with risotto",
+        "Chicken Parmesan",
         "Grilled branzino",
         "Lobster ravioli",
         "Roasted vegetables",

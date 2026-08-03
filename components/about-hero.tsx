@@ -11,14 +11,12 @@ export function AboutHero() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badges */}
+          {/* No "Since 1983" badge: the date was wrong, and no span of years is
+              asserted anywhere until the founding dates are confirmed. */}
           <div className="flex justify-center items-center gap-4 mb-8 flex-wrap">
             <Badge className="bg-primary text-primary-foreground px-4 py-2">
               <Clock className="w-4 h-4 mr-2" />
-              Since 1983
-            </Badge>
-            <Badge className="bg-accent text-accent-foreground px-4 py-2">
-              <Award className="w-4 h-4 mr-2" />
-              Award-Winning
+              Sonoma County
             </Badge>
             <Badge className="bg-secondary text-secondary-foreground px-4 py-2">
               <Heart className="w-4 h-4 mr-2" />
@@ -32,32 +30,15 @@ export function AboutHero() {
             <span className="block text-primary">Pasta King</span>
           </h1>
 
-          {/* Description */}
-          <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
-            For over four decades, Art Ibleto has been crafting authentic Italian cuisine that brings families together
-            and creates lasting memories. This is the story of passion, tradition, and the pursuit of culinary
-            perfection.
+          {/* Past tense. Art passed away in 2020. */}
+          <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto">
+            Some people are remembered for one great dish. Art Ibleto was remembered for feeding a whole county.
           </p>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">40+</div>
-              <div className="text-sm text-white/80">Years of Service</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">1000s</div>
-              <div className="text-sm text-white/80">Happy Families</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">15+</div>
-              <div className="text-sm text-white/80">Awards Won</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">3</div>
-              <div className="text-sm text-white/80">Generations</div>
-            </div>
-          </div>
+          {/* The stats bar that used to sit here claimed "40+ Years of Service",
+              "1000s Happy Families", "15+ Awards Won", and "3 Generations". None of
+              those figures had a source, so the bar is gone rather than guessed at.
+              If the family confirms real numbers, they belong in lib/content.ts. */}
         </div>
       </div>
     </section>

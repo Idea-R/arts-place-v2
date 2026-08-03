@@ -18,7 +18,7 @@ export function MenuHero() {
             </Badge>
             <Badge className="bg-accent text-accent-foreground px-4 py-2">
               <Star className="w-4 h-4 mr-2" />
-              40+ Years of Tradition
+              Wood Fired Daily
             </Badge>
             <Badge className="bg-secondary text-secondary-foreground px-4 py-2">
               <Flame className="w-4 h-4 mr-2" />
@@ -35,7 +35,7 @@ export function MenuHero() {
           {/* Description */}
           <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
             Every dish tells a story of Italian tradition, crafted with the finest ingredients and recipes perfected
-            over four decades. From our signature Spaghetti Half & Half to our wood-fired pizzas, taste the authentic
+            a lifetime of cooking. From the signature Spaghetti Half & Half to the wood fired pizzas, taste the
             flavors that made Art famous throughout Sonoma County.
           </p>
 

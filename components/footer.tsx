@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react"
+import { Facebook, Instagram, Twitter, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -18,7 +18,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-muted leading-relaxed mb-6 md:mb-4">
-              Serving authentic Italian cuisine in Rohnert Park for over 40 years. Home of the Pasta King's
+              Authentic Italian in Rohnert Park. Home of the Pasta King's
               award-winning recipes.
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
@@ -85,16 +85,8 @@ export function Footer() {
                   Off-Site Catering
                 </Link>
               </li>
-              <li>
-                <Link href="/events" className="text-muted hover:text-primary transition-colors">
-                  Wine Dinners
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-muted hover:text-primary transition-colors">
-                  Gift Cards
-                </Link>
-              </li>
+              {/* "Wine Dinners" and "Gift Cards" were listed here as services. Neither
+                  is confirmed to exist. They return once the restaurant says so. */}
             </ul>
           </div>
 
@@ -114,17 +106,13 @@ export function Footer() {
                 <Phone className="h-4 w-4 text-primary" />
                 <span className="text-muted">(707) 588-2787</span>
               </div>
-              <div className="flex items-center justify-center md:justify-start gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <span className="text-muted">info@artsplacerp.com</span>
-              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-muted/20 mt-8 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted space-y-4 md:space-y-0">
-          <p>&copy; 2024 Art's Place Ristorante. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Art's Place Ristorante. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/contact" className="hover:text-primary transition-colors">
               Contact Us

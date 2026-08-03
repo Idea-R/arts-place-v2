@@ -7,14 +7,12 @@ export function WelcomeSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">Welcome to Art's Place</h2>
+          {/* Past tense: Art passed away in 2020. The signature line under this
+              paragraph was removed because it signed words to him that he never said. */}
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Where every meal is a celebration of authentic Italian tradition. For over four decades, Art Ibleto, known
-            throughout Sonoma County as "The Pasta King," has been crafting award-winning Italian dishes that bring
-            families together and create lasting memories.
+            Art Ibleto was known throughout Sonoma County as the Pasta King. The kitchen still runs on his recipes, and
+            the door is still open to anyone who walks through it. That is the whole point, and always was.
           </p>
-          <div className="mt-6 text-right">
-            <p className="font-serif text-lg text-primary italic">- Art Ibleto, The Pasta King</p>
-          </div>
         </div>
 
         {/* Feature cards */}

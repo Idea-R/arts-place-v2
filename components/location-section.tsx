@@ -5,7 +5,7 @@ import { MapPin, Clock, Phone, Car, Accessibility } from "lucide-react"
 export function LocationSection() {
   const hours = [
     { day: "Monday - Thursday", time: "11:30am - 9:00pm" },
-    { day: "Friday - Saturday", time: "11:30am - 10:00pm" },
+    { day: "Friday - Saturday", time: "11:30am - 9:00pm" },
     { day: "Sunday", time: "11:30am - 9:00pm" },
   ]
 

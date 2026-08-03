@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Star } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { site } from "@/lib/content"
 
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0)
@@ -35,25 +36,27 @@ export function HeroSection() {
         <div className="flex justify-center items-center gap-6 mb-8 text-sm">
           <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/30 transition-all duration-300 hover:scale-105">
             <Star className="h-4 w-4 fill-secondary text-secondary" />
-            <span>40+ Years</span>
+            <span>Pasta King Recipes</span>
           </div>
           <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/30 transition-all duration-300 hover:scale-105">
             Family Owned
           </div>
           <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/30 transition-all duration-300 hover:scale-105">
-            Fresh Daily
+            Wood Fired
           </div>
         </div>
 
-        {/* Main headline */}
+        {/* Main headline. No span of years is asserted here: the founding dates are
+            still unconfirmed, and the previous "Since 1983" was wrong outright. */}
         <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance animate-fade-in-up">
-          Authentic Italian
-          <span className="block text-secondary">Since 1983</span>
+          {site.tagline}
+          <span className="block text-secondary italic">{site.taglineItalian}</span>
         </h1>
 
         {/* Subheadline */}
         <p className="text-xl md:text-2xl mb-8 text-balance max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-          Home of the <span className="text-secondary font-semibold">Pasta King's</span> Award-Winning Recipes
+          Authentic Italian in Rohnert Park, from the{" "}
+          <span className="text-secondary font-semibold">Pasta King's</span> own recipes
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-400">
@@ -78,8 +81,8 @@ export function HeroSection() {
         </div>
 
         {/* Signature tagline */}
-        <p className="mt-8 text-lg italic text-secondary animate-fade-in-up animation-delay-600">
-          "Dove amici si incontrano" - Where Friends Meet!
+        <p className="mt-8 text-lg text-secondary animate-fade-in-up animation-delay-600">
+          Rohnert Park, California
         </p>
       </div>
 

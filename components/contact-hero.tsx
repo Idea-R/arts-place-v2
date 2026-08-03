@@ -51,7 +51,7 @@ export function ContactHero() {
               <p className="text-muted-foreground text-sm text-center mb-3">
                 Daily: 11:30am - 9:00pm
                 <br />
-                Fri-Sat: Until 10:00pm
+                Every day, including weekends
               </p>
               <Button
                 size="sm"

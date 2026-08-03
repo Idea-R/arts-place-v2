@@ -14,7 +14,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Art's Place - Authentic Italian Restaurant | Rohnert Park, CA",
   description:
-    "Experience authentic Italian cuisine at Art's Place, home of the Pasta King. Serving Rohnert Park for over 40 years with award-winning pasta, wood-fired pizza, and family recipes.",
+    "Authentic Italian cuisine at Art's Place in Rohnert Park, home of the Pasta King. Pasta, wood fired pizza, and the family recipes Art Ibleto built his name on.",
   keywords: [
     "Italian restaurant",
     "Rohnert Park",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Art's Place - Authentic Italian Restaurant | The Pasta King",
     description:
-      "Home of the Pasta King - serving authentic Italian cuisine in Rohnert Park for over 40 years. Award-winning pasta, wood-fired pizza, and unforgettable family recipes.",
+      "Home of the Pasta King. Authentic Italian cuisine in Rohnert Park: pasta, wood fired pizza, and family recipes.",
     type: "website",
     locale: "en_US",
     url: "https://artsplacerp.com",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Art's Place - Authentic Italian Restaurant",
-    description: "Home of the Pasta King - serving authentic Italian cuisine for over 40 years",
+    description: "Home of the Pasta King. Authentic Italian cuisine in Rohnert Park.",
     images: ["https://ltr1z7kpduo1wich.public.blob.vercel-storage.com/Images/ThePastaKing.jpg"],
   },
   verification: {

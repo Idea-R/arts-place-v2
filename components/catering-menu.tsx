@@ -8,7 +8,7 @@ export function CateringMenu() {
     {
       name: "Antipasti Package",
       description: "Perfect for cocktail receptions and networking events",
-      priceRange: "$12-18 per person",
+      priceRange: "Quote on request",
       items: [
         "Assorted bruschetta varieties",
         "Italian meat and cheese platter",
@@ -22,7 +22,7 @@ export function CateringMenu() {
     {
       name: "Pasta King's Favorites",
       description: "Our signature dishes that made Art famous",
-      priceRange: "$25-35 per person",
+      priceRange: "Quote on request",
       items: [
         "Spaghetti Half & Half",
         "Baked Polenta with sausage",
@@ -37,7 +37,7 @@ export function CateringMenu() {
     {
       name: "Wood-Fired Pizza Party",
       description: "Casual dining with our authentic wood-fired pizzas",
-      priceRange: "$20-28 per person",
+      priceRange: "Quote on request",
       items: [
         "Margherita pizza",
         "Pepperoni pizza",
@@ -52,9 +52,9 @@ export function CateringMenu() {
     {
       name: "Premium Italian Feast",
       description: "Our most elegant offering for special celebrations",
-      priceRange: "$45-65 per person",
+      priceRange: "Quote on request",
       items: [
-        "Osso Buco with risotto",
+        "Chicken Parmesan",
         "Grilled branzino",
         "Lobster ravioli",
         "Roasted vegetables",
@@ -68,11 +68,11 @@ export function CateringMenu() {
   ]
 
   const additionalServices = [
-    { service: "Professional service staff", price: "$25/hour per server" },
-    { service: "Linen and table settings", price: "$8 per person" },
-    { service: "Wine and beverage service", price: "Market pricing" },
+    { service: "Professional service staff", price: "Quote on request" },
+    { service: "Linen and table settings", price: "Quote on request" },
+    { service: "Wine and beverage service", price: "Quote on request" },
     { service: "Custom menu creation", price: "Consultation fee applies" },
-    { service: "Event coordination", price: "$200 flat fee" },
+    { service: "Event coordination", price: "Quote on request" },
   ]
 
   return (
