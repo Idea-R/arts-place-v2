@@ -23,7 +23,7 @@ export function TestimonialsSection() {
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">What Guests Say</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Four decades of regulars, and a lot of them have written it down.
+            Art’s Place has a lot of regulars, and plenty of them have written it down.
           </p>
         </div>
 

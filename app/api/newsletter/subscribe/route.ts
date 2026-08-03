@@ -17,10 +17,11 @@ export async function POST(request: NextRequest) {
     // 4. Send welcome email with discount code
     // 5. Store in database
 
+    // No discount code is issued. The restaurant never authorised a promotional
+    // offer, and nothing here sends an email or stores the address.
     return NextResponse.json({
       success: true,
-      message: "Successfully subscribed to newsletter",
-      discountCode: "WELCOME10",
+      message: "Subscription received (demo only, nothing is stored)",
     })
   } catch (error) {
     console.error("Newsletter subscription error:", error)

@@ -36,7 +36,7 @@ export function WelcomeSection() {
               </div>
               <h3 className="font-serif text-xl font-semibold mb-3">Family Tradition</h3>
               <p className="text-muted-foreground">
-                Four decades of serving authentic Italian cuisine with recipes passed down through generations.
+                Family owned and operated, cooking the recipes Art passed down.
               </p>
             </CardContent>
           </Card>

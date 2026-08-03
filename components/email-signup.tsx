@@ -57,12 +57,11 @@ export function EmailSignup() {
             </div>
 
             <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Get 10% Off Your First Order
+              Keep In Touch
             </h2>
 
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              Join the Art's Place family and be the first to know about new dishes, special events, and exclusive
-              offers. Plus, get 10% off your first order!
+              Be the first to hear about specials, seasonal dishes, and what is happening on the patio.
             </p>
 
             {!isSubmitted ? (
@@ -135,14 +134,10 @@ export function EmailSignup() {
             ) : (
               <div className="max-w-md mx-auto">
                 <div className="bg-accent/10 text-accent p-6 rounded-lg">
-                  <p className="font-semibold text-lg">Welcome to the family!</p>
-                  <p className="text-sm mt-2">Check your email for your 10% off coupon.</p>
-                  {discountCode && (
-                    <div className="mt-4 p-3 bg-primary/10 rounded border-2 border-dashed border-primary/30">
-                      <p className="text-xs font-medium">Your discount code:</p>
-                      <p className="text-lg font-bold text-primary">{discountCode}</p>
-                    </div>
-                  )}
+                  <p className="font-semibold text-lg">Thanks for signing up</p>
+                  <p className="text-sm mt-2">
+                    Demo only: this form is not connected to an email service yet, so nothing was stored or sent.
+                  </p>
                 </div>
               </div>
             )}
