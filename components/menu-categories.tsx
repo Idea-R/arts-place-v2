@@ -6,36 +6,42 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Search, Star } from "lucide-react"
-import { menu } from "@/lib/content"
+import type { LiveCategory } from "@/lib/menu-data"
 
-export function MenuCategories() {
-  const [activeCategory, setActiveCategory] = useState(menu.value[0]?.id ?? "starters")
+// The menu now comes from the database, passed in by the page, so the restaurant can
+// change a price or add a dish from the dashboard and see it here on the next load.
+// `live` is false when the database could not be reached and the last known good
+// transcription is being served instead.
+//
+// Dietary badges are still deliberately NOT inferred. An earlier version marked
+// dishes "GF" and "V" with no source behind it, and an unverified allergen claim on
+// a restaurant menu is a safety problem, not a formatting detail. They return only
+// when the kitchen confirms each dish.
+export function MenuCategories({
+  categories: source,
+  live = true,
+}: {
+  categories: LiveCategory[]
+  live?: boolean
+}) {
+  const [activeCategory, setActiveCategory] = useState(source[0]?.id ?? "starters")
   const [searchTerm, setSearchTerm] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  // Menu content comes from lib/content.ts, transcribed from the restaurant's own
-  // published menu. It used to be hardcoded here: about twenty invented dishes,
-  // including an Osso Buco at $28.95 that the kitchen does not serve, and real dishes
-  // priced wrongly (Baked Polenta was listed at $19.95 against a real $16).
-  //
-  // Dietary badges are deliberately NOT inferred. The previous version marked dishes
-  // "GF" and "V" with no source behind it. An unverified allergen claim on a
-  // restaurant menu is a safety problem, not a formatting detail. Badges return only
-  // when the kitchen confirms each dish.
-  const categories = menu.value.map((category) => ({
+  const categories = source.map((category) => ({
     id: category.id,
     name: category.name,
     count: category.items.length,
   }))
 
   const menuItems = Object.fromEntries(
-    menu.value.map((category) => [
+    source.map((category) => [
       category.id,
       category.items.map((item) => ({
         name: item.name,
         description: item.description ?? "",
         price: item.price,
-        image: null as string | null,
+        image: ((item as any).photoUrl ?? null) as string | null,
         dietary: [] as string[],
         isSignature: item.signature ?? false,
       })),
