@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer"
 export const metadata = {
   title: "About Art's Place - The Pasta King's Story | Italian Restaurant Rohnert Park",
   description:
-    "Learn about Art Ibleto, the Pasta King, and the 40+ year history of Art's Place. Discover our awards, community involvement, and authentic Italian family tradition.",
+    "The story of Art Ibleto, the Pasta King: from Sesta Godano near Genoa to the Sonoma County Fair, and then to Art's Place in Rohnert Park.",
 }
 
 export default function AboutPage() {

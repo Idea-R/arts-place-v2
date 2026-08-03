@@ -8,28 +8,28 @@ export function CommunityInvolvement() {
       title: "Local Charity Support",
       description:
         "Annual fundraising dinners for local charities, donating thousands of dollars to support families in need throughout Sonoma County.",
-      impact: "$50,000+ raised annually",
+      impact: "",
     },
     {
       icon: GraduationCap,
       title: "Culinary Education",
       description:
         "Partnering with local high schools to provide culinary internships and scholarships for aspiring chefs in our community.",
-      impact: "25+ students mentored",
+      impact: "",
     },
     {
       icon: Users,
       title: "Community Events",
       description:
         "Hosting and sponsoring local festivals, farmers markets, and community celebrations that bring neighbors together.",
-      impact: "12+ events annually",
+      impact: "",
     },
     {
       icon: HandHeart,
       title: "Senior Meal Program",
       description:
         "Providing discounted meals and free delivery for local seniors, ensuring no one in our community goes without a warm, nutritious meal.",
-      impact: "200+ seniors served monthly",
+      impact: "",
     },
   ]
 
@@ -39,8 +39,8 @@ export function CommunityInvolvement() {
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">Giving Back</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Art's Place isn't just a restaurant, it's part of the Rohnert Park community.
-            we've been committed to giving back and supporting the neighbors who have supported us.
+            Art's Place isn't just a restaurant, it's part of the Rohnert Park community. Art was known across
+            Sonoma County for feeding it, and that has not changed.
           </p>
         </div>
 
@@ -55,27 +55,19 @@ export function CommunityInvolvement() {
                 <h3 className="font-serif text-xl font-semibold text-foreground mb-3">{initiative.title}</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">{initiative.description}</p>
 
-                <div className="bg-primary/5 rounded-lg p-3">
-                  <p className="text-primary font-semibold text-sm">{initiative.impact}</p>
-                </div>
+                {initiative.impact && (
+                  <div className="bg-primary/5 rounded-lg p-3">
+                    <p className="text-primary font-semibold text-sm">{initiative.impact}</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Community Quote */}
-        <div className="max-w-3xl mx-auto text-center">
-          <Card className="border-none shadow-xl bg-primary/5">
-            <CardContent className="p-8">
-              <blockquote className="text-foreground font-medium italic text-xl leading-relaxed mb-6">
-                "We believe that a restaurant's success is measured not just by the food we serve, but by the positive
-                impact we have on our community. Every meal we prepare, every event we host, and every dollar we donate
-                is our way of saying 'thank you' to the community that has embraced us as family."
-              </blockquote>
-              <cite className="text-primary font-semibold text-lg">— Art Ibleto & Family</cite>
-            </CardContent>
-          </Card>
-        </div>
+        {/* A closing quotation used to sit here, signed "Art Ibleto & Family".
+            He did not say it. If the family wants a statement in their own words,
+            it goes in lib/content.ts and gets attributed properly. */}
       </div>
     </section>
   )
