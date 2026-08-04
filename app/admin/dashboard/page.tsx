@@ -3,6 +3,7 @@ import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { MenuManager } from "@/components/dashboard/menu-manager"
 import { SpecialsManager } from "@/components/dashboard/specials-manager"
+import { Connectors } from "@/components/dashboard/connectors"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -106,6 +107,7 @@ export default async function DashboardPage() {
           <TabsList className="mb-6">
             <TabsTrigger value="menu">Menu</TabsTrigger>
             <TabsTrigger value="specials">Daily specials</TabsTrigger>
+            <TabsTrigger value="connections">Connections</TabsTrigger>
             <TabsTrigger value="activity">Activity</TabsTrigger>
           </TabsList>
 
@@ -115,6 +117,10 @@ export default async function DashboardPage() {
 
           <TabsContent value="specials">
             <SpecialsManager specials={(specials ?? []) as any} />
+          </TabsContent>
+
+          <TabsContent value="connections">
+            <Connectors />
           </TabsContent>
 
           <TabsContent value="activity">
