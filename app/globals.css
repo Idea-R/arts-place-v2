@@ -269,3 +269,38 @@
     padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* Mobile tap targets.
+   An audit at 390px found footer links 19px tall, social icons at 20px, and form
+   checkboxes at 16px, all well under the 44px accessibility floor and all annoying
+   to hit with a thumb. Grow the hit area with padding so the type is untouched, and
+   only on touch-sized viewports where it matters. */
+@media (max-width: 767px) {
+  footer a,
+  footer button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-block: 0.35rem;
+  }
+
+  /* Social icon rows: give each icon a real square to be hit in. */
+  footer a:has(> svg:only-child) {
+    min-width: 2.75rem;
+    justify-content: center;
+  }
+
+  /* Checkboxes and their labels in forms. The control itself stays 16px visually;
+     the label wrapping it becomes the target. */
+  label:has(input[type="checkbox"]),
+  label:has(button[role="checkbox"]) {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
+  /* Small inline buttons that shipped at 32-36px. */
+  button.inline-flex {
+    min-height: 2.75rem;
+  }
+}
