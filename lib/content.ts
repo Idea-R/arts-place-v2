@@ -124,20 +124,66 @@ export const site = {
  * present-tense copy about a founder who has died reads as careless to the family
  * and to every regular who knew him.
  *
- * Dates still need family sign-off, so this whole group is unconfirmed.
+ * Split by provenance. The Press Democrat obituary of 25 November 2020 carries the
+ * departure from Italy, Petaluma, the Spaghetti Palace and his death at 94, so those
+ * are confirmed. Two Sonoma Magazine pieces from 2013 carry the restaurant's opening.
+ * The village, the resistance and the exact year of the fair stand are in none of
+ * them, so they stay unconfirmed and keep their marker.
  */
-export const story = unconfirmed({
-  birthplace: "Sesta Godano, a village near Genoa",
-  wartime: "the Italian resistance",
+export const story = confirmed({
   arrivalCity: "Petaluma",
   arrivalYear: "1949",
   fairStand: "the Spaghetti Palace",
   fairVenue: "the Sonoma County Fair",
-  fairYear: "1974",
-  openedYear: "2013",
   passedYear: "2020",
   passedAge: "94",
 })
+
+export const storyUnverified = unconfirmed({
+  birthplace: "Sesta Godano, a village near Genoa",
+  wartime: "the Italian resistance",
+  fairYear: "1974",
+})
+
+/**
+ * The restaurant's own founding, kept apart from Art's biography on purpose.
+ *
+ * Art's Place opened in 2013, in the room that until then was the Seasons Sports Bar.
+ * Art had been feeding this county since the early 1970s. Those are two different
+ * clocks. Merging them produces "a Sonoma County institution since 1974" attached to
+ * a thirteen year old restaurant, which is how the old build ended up asserting spans
+ * nobody could support. The legacy is old, the restaurant is young, say both.
+ */
+export const founding = confirmed({
+  openedYear: "2013",
+  previousTenant: "the Seasons Sports Bar",
+})
+
+/**
+ * Provenance for every `confirmed` flag above. Recorded so the next person does not
+ * re-derive it, and so a confirmed flag is auditable rather than a matter of trust.
+ */
+export const sources = [
+  {
+    publication: "Sonoma Magazine (BiteClub)",
+    date: "January 2013",
+    supports: "The opening, the address, and the former Seasons Sports Bar.",
+    url: "https://www.sonomamag.com/pasta-king-art-ibleto-opening-arts-place-in-rohnert-park/",
+  },
+  {
+    publication: "Sonoma Magazine (BiteClub)",
+    date: "March 2013",
+    supports: "The restaurant open and reviewed, and wine and beer on tap.",
+    url: "https://www.sonomamag.com/arts-place-rohnert-park/",
+  },
+  {
+    publication: "The Press Democrat",
+    date: "25 November 2020",
+    supports:
+      "Left Italy 14 September 1949 for Petaluma, the Spaghetti Palace in the early 1970s, died at 94, and the catering operation listed separately from his partnership in the restaurant.",
+    url: "https://www.pressdemocrat.com/article/news/art-ibleto-sonoma-countys-pasta-king-dies-at-94/",
+  },
+]
 
 /**
  * Only milestones we can source. The previous timeline invented nine entries,
@@ -147,25 +193,32 @@ export const story = unconfirmed({
  * from a real organization is the worst of them.
  *
  * If the family confirms more milestones, add them here.
+ *
+ * Provenance varies per entry, so the marker does too. Three of these four are carried
+ * by published reporting; the fair stand's exact year is not, and the obituary says
+ * only "the early 1970s". Marking the whole group unconfirmed would cast the same
+ * doubt over the sourced entries as over the unsourced one, which tells a reader
+ * nothing. `needsConfirming` marks the single entry that earns it.
  */
-export const timeline = unconfirmed([
+export const timeline = confirmed([
   {
     year: "1949",
     title: "Arrival in Sonoma County",
     description:
-      "Art Ibleto arrived in Petaluma from Sesta Godano, a village near Genoa, after fighting with the Italian resistance as a teenager.",
+      "Art Ibleto left Italy on 14 September 1949, a 22 year old war veteran, and headed for Petaluma.",
   },
   {
     year: "1974",
     title: "The Spaghetti Palace",
     description:
       "Art opened the Spaghetti Palace at the Sonoma County Fair. Generations grew up on his half and half spaghetti and his baked polenta, and he became the Pasta King.",
+    needsConfirming: true,
   },
   {
     year: "2013",
     title: "Art's Place Opens",
     description:
-      "Art opened Art's Place in Rohnert Park so the food could have a home open every day, not just fair week.",
+      "Art and his family took over the former Seasons Sports Bar on Rohnert Park Expressway and opened Art's Place, so the food could have a home open every day, not just fair week.",
   },
   {
     year: "2020",
@@ -292,6 +345,12 @@ export const menu: Fact<MenuCategory[]> = unconfirmed([
   },
 ])
 
-/** True only when every operational fact has been verified with the client. */
+/**
+ * True only when every operational fact has been verified with the client.
+ *
+ * `storyUnverified` rather than `story`: the biography is now split by provenance and
+ * the sourced half is already confirmed, so gating on `story` would flip this to true
+ * while the village and the fair stand's year were still nobody's published claim.
+ */
 export const allFactsConfirmed =
-  site.streetAddress.confirmed && site.hours.confirmed && story.confirmed
+  site.streetAddress.confirmed && site.hours.confirmed && storyUnverified.confirmed

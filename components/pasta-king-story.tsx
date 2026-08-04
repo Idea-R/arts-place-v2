@@ -1,9 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Quote } from "lucide-react"
-import { site, story } from "@/lib/content"
+import { site, story, storyUnverified, founding } from "@/lib/content"
 
 export function PastaKingStory() {
   const s = story.value
+  const u = storyUnverified.value
+  const f = founding.value
 
   return (
     <section className="py-16 bg-background">
@@ -30,20 +32,26 @@ export function PastaKingStory() {
 
               <div className="space-y-6 text-muted-foreground leading-relaxed">
                 <p>
-                  Art Ibleto came from {s.birthplace}, and fought with {s.wartime} as a teenager. He arrived in{" "}
-                  {s.arrivalCity} in {s.arrivalYear} with little more than that, and built a life here that most people
-                  only get to read about.
+                  Art Ibleto came from {u.birthplace}, and fought with {u.wartime} as a teenager. He left Italy in{" "}
+                  {s.arrivalYear}, a war veteran in his early twenties, and headed for {s.arrivalCity} with little more
+                  than that behind him.
                 </p>
 
                 <p>
-                  In {s.fairYear} he opened {s.fairStand} at {s.fairVenue}. That is where he became the Pasta King. For
+                  In {u.fairYear} he opened {s.fairStand} at {s.fairVenue}. That is where he became the Pasta King. For
                   decades after, generations grew up on his half and half spaghetti and his baked polenta. If you grew
                   up here, you already know the taste.
                 </p>
 
                 <p>
-                  Art opened Art's Place in {s.openedYear} so the food could have a home open every day, not just fair
-                  week. He passed away in {s.passedYear} at {s.passedAge}. The kitchen he built keeps going: the same
+                  The restaurant came last, and that is the part people get wrong. For close to forty years the food
+                  travelled: a fair stand for one week a year, then catering, then a freezer case. Art was in his
+                  eighties when the family took over {f.previousTenant} on Rohnert Park Expressway and opened Art's
+                  Place in {f.openedYear}, so the cooking could finally have an address.
+                </p>
+
+                <p>
+                  He passed away in {s.passedYear} at {s.passedAge}. The kitchen he built keeps going: the same
                   recipes, the same wood fired oven, and the same idea he carried the whole way, that good food is how
                   you take care of people.
                 </p>
@@ -63,9 +71,12 @@ export function PastaKingStory() {
                 </CardContent>
               </Card>
 
-              {!story.confirmed && (
+              {/* Narrowed once the obituary and the 2013 opening announcements were
+                  read. The marker names the three things genuinely still unsourced
+                  rather than casting doubt across a paragraph that is properly cited. */}
+              {!storyUnverified.confirmed && (
                 <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">
-                  Dates and biography to confirm with the family
+                  Art&apos;s village, his wartime service and the year of the fair stand still to confirm
                 </p>
               )}
             </div>

@@ -16,9 +16,10 @@ export function RestaurantTimeline() {
             From a village near Genoa to a fair stand that fed a whole county, and then to a room on Rohnert Park
             Expressway.
           </p>
-          {!timeline.confirmed && (
-            <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">Dates to confirm with the family</p>
-          )}
+          {/* No group-level marker any more. Three of these four entries are carried by
+              published reporting, so a blanket "dates to confirm" would have told the
+              reader the opposite of the truth. The one unsourced year is marked in place,
+              below. */}
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -44,6 +45,11 @@ export function RestaurantTimeline() {
                         </div>
                       </div>
                       <p className="text-muted-foreground leading-relaxed">{event.description}</p>
+                      {"needsConfirming" in event && event.needsConfirming && (
+                        <p className="mt-3 text-xs uppercase tracking-wider text-muted-foreground">
+                          Year to confirm. Reporting places this in the early 1970s.
+                        </p>
+                      )}
                     </CardContent>
                   </Card>
                 </div>

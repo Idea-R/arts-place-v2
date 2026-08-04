@@ -228,15 +228,15 @@ export function MenuCategories({
           {filteredItems.length === 0 && !isLoading && (
             <div className="text-center py-12 animate-fade-in">
               <p className="text-muted-foreground text-lg">No items found matching your criteria.</p>
+              {/* Search is the only filter left. The dietary filter went out with the
+                  invented allergen data it read from, but this handler kept calling its
+                  setter, so clicking here threw a ReferenceError. */}
               <Button
                 variant="outline"
-                onClick={() => {
-                  setSearchTerm("")
-                  setDietaryFilter([])
-                }}
+                onClick={() => setSearchTerm("")}
                 className="mt-4 transition-all duration-300 hover:scale-105"
               >
-                Clear Filters
+                Clear search
               </Button>
             </div>
           )}
