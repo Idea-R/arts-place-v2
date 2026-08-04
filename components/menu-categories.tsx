@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Search, Star } from "lucide-react"
 import type { LiveCategory } from "@/lib/menu-data"
 
@@ -27,6 +33,8 @@ export function MenuCategories({
   const [activeCategory, setActiveCategory] = useState(source[0]?.id ?? "starters")
   const [searchTerm, setSearchTerm] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  // The dish currently expanded. Null when the grid is just a grid.
+  const [openItem, setOpenItem] = useState<any>(null)
 
   const categories = source.map((category) => ({
     id: category.id,
@@ -162,7 +170,17 @@ export function MenuCategories({
               {filteredItems.map((item, index) => (
                 <Card
                   key={index}
-                  className="menu-card group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-none shadow-lg overflow-hidden flex flex-col"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${item.name}, ${item.price}. Open details.`}
+                  onClick={() => setOpenItem(item)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault()
+                      setOpenItem(item)
+                    }
+                  }}
+                  className="menu-card group cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-none shadow-lg overflow-hidden flex flex-col focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Photography is omitted until the restaurant supplies real photos.
@@ -285,6 +303,52 @@ export function MenuCategories({
           animation: fade-in 0.5s ease-out;
         }
       `}</style>
+    
+      {/* Dish detail. Only what we actually hold: no nutrition, no allergen data.
+          Inventing those was a safety problem in the build this replaced. */}
+      <Dialog open={Boolean(openItem)} onOpenChange={(o) => !o && setOpenItem(null)}>
+        <DialogContent className="max-w-lg">
+          {openItem && (
+            <>
+              <DialogHeader>
+                <div className="flex items-start justify-between gap-4">
+                  <DialogTitle className="font-serif text-2xl">{openItem.name}</DialogTitle>
+                  <span className="font-bold text-primary text-xl whitespace-nowrap">
+                    {openItem.price}
+                  </span>
+                </div>
+              </DialogHeader>
+
+              {openItem.image && (
+                <img
+                  src={openItem.image}
+                  alt={openItem.name}
+                  className="h-52 w-full rounded-md object-cover"
+                />
+              )}
+
+              {openItem.description && (
+                <p className="leading-relaxed text-muted-foreground">
+                  {openItem.description}
+                </p>
+              )}
+
+              {openItem.isSignature && (
+                <p className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
+                  <Star className="h-3 w-3" aria-hidden />
+                  House signature
+                </p>
+              )}
+
+              <p className="border-t pt-4 text-sm text-muted-foreground">
+                Ask your server about ingredients and allergens. We do not publish
+                nutrition figures we have not measured.
+              </p>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
     </section>
   )
 }
