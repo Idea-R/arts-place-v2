@@ -14,8 +14,14 @@ export function PastaKingStory() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
             <div className="relative">
+              {/* Mirrored into this repo. It used to hotlink the old v0 project's
+                  Vercel blob store, which is a project we plan to delete, so Art's
+                  photo would have disappeared from the page the moment it went.
+                  Provenance of the photo itself is still unconfirmed: it arrived with
+                  the v0 build and nobody has told us who shot it. Worth asking the
+                  family before launch. */}
               <img
-                src="https://ltr1z7kpduo1wich.public.blob.vercel-storage.com/Images/ThePastaKing.jpg"
+                src="/photos/art-ibleto.jpg"
                 alt="Art Ibleto, the Pasta King"
                 className="w-full h-96 object-cover rounded-lg shadow-xl"
               />

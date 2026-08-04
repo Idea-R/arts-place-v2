@@ -50,11 +50,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://artsplacerp.com",
     siteName: "Art's Place Restaurant",
+    // Served from this repo, not from the old v0 project's Vercel blob store. That
+    // store belongs to a project we intend to delete, and the share image for the
+    // whole site should not depend on something we are about to turn off.
+    // Dimensions are the file's real ones. They were declared 1200x630, which the
+    // photo has never been, so every platform was being told the wrong crop.
     images: [
       {
-        url: "https://ltr1z7kpduo1wich.public.blob.vercel-storage.com/Images/ThePastaKing.jpg",
-        width: 1200,
-        height: 630,
+        url: "/photos/art-ibleto.jpg",
+        width: 1536,
+        height: 1536,
         alt: "Art Ibleto, The Pasta King, at Art's Place Restaurant",
       },
     ],
@@ -63,11 +68,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Art's Place - Authentic Italian Restaurant",
     description: "Home of the Pasta King. Authentic Italian cuisine in Rohnert Park.",
-    images: ["https://ltr1z7kpduo1wich.public.blob.vercel-storage.com/Images/ThePastaKing.jpg"],
+    images: ["/photos/art-ibleto.jpg"],
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // `verification` removed. It carried the literal string "your-google-verification-code",
+  // which Next.js emitted as a real google-site-verification meta tag. A placeholder
+  // shipped as a verification token is worse than no tag: it is a broken claim of
+  // ownership on a listing that, as it happens, is still unclaimed. Add the real token
+  // when the Google Business Profile is claimed.
   category: "restaurant",
     generator: 'v0.app'
 }
