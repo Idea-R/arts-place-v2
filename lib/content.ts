@@ -49,6 +49,71 @@ export const site = {
   // No public email address exists yet. The domain is registered, so one can be
   // created, but nothing is published until it actually receives mail.
   email: unconfirmed(""),
+
+  /**
+   * Reservations. Settled with the client.
+   *
+   * Yelp said yes and Restaurantji said no because they were answering different
+   * questions. Large groups book; a table for two walks in. Say the specific
+   * thing: a couple who reserves and finds no reservation is worse off than a
+   * couple who simply turns up.
+   */
+  reservations: confirmed({
+    forLargeGroups: true,
+    forSmallTables: false,
+    method: "phone",
+  }),
+
+  /**
+   * Larger parties.
+   *
+   * There is NO events programme. No weddings, no packages, no ticketed dinners,
+   * nothing to book online. They can seat a larger party if you call ahead, and
+   * that is the whole of it. The events pitch this build shipped with, patio
+   * capacity and booking form included, was invented.
+   */
+  largerParties: confirmed({
+    welcome: true,
+    hasEventsProgramme: false,
+  }),
+
+  /**
+   * The room. Confirmed by the client.
+   *
+   * `fullBar: false` is the load-bearing part. Multiple televisions and drinks,
+   * but beer, wine and cider only. Advertising cocktails would send someone here
+   * for a drink we cannot pour.
+   */
+  room: confirmed({
+    televisions: true,
+    fullBar: false,
+    drinks: ["beer", "wine", "cider"],
+    seating: ["booths", "tables", "bar seating", "outdoor tables"],
+  }),
+
+  /**
+   * Outdoor seating. Real, and currently plain: tables outside, nothing more.
+   * A properly built outdoor area is in progress. The earlier copy promised a
+   * patio seating fifty, which was never true.
+   */
+  outdoorSeating: confirmed({
+    available: true,
+    improvementInProgress: true,
+  }),
+
+  /**
+   * Catering.
+   *
+   * Real and worth advertising, but run by the founding family's own operation
+   * rather than by the restaurant. Never write "we cater": it claims a service
+   * the restaurant does not provide and points the enquiry at the wrong people.
+   * No prices anywhere, ever. Every catering price this build shipped with was
+   * invented.
+   */
+  catering: confirmed({
+    available: true,
+    runByFamily: true,
+  }),
 } as const
 
 /**

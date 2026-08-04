@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Plus, X, AlertCircle, CalendarDays } from "lucide-react"
 import { saveSpecial, endSpecial } from "@/app/admin/dashboard/actions"
+import { PhotoUpload } from "./photo-upload"
 
 type Special = {
   id: string
@@ -94,6 +95,9 @@ export function SpecialsManager({ specials }: { specials: Special[] }) {
               <div className="space-y-2">
                 <Label htmlFor="ends_on">Ends (leave blank to run until you stop it)</Label>
                 <Input id="ends_on" name="ends_on" type="date" />
+              </div>
+              <div className="md:col-span-2">
+                <PhotoUpload label="Photo of the special (optional)" />
               </div>
               <div className="md:col-span-2 flex gap-3">
                 <Button type="submit" disabled={pending}>

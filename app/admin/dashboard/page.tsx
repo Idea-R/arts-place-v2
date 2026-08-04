@@ -32,7 +32,7 @@ export default async function DashboardPage() {
   const [{ data: categories }, { data: specials }, { data: recent }] = await Promise.all([
     supabase
       .from("menu_categories")
-      .select("id, name, sort_order, menu_items(id, name, description, price, is_signature, is_available, category_id, sort_order)")
+      .select("id, name, sort_order, menu_items(id, name, description, price, is_signature, is_available, category_id, photo_url, sort_order)")
       .order("sort_order"),
     supabase.from("daily_specials").select("*").order("starts_on", { ascending: false }).limit(25),
     supabase.from("change_log").select("actor_email, entity, action, detail, created_at").order("created_at", { ascending: false }).limit(12),

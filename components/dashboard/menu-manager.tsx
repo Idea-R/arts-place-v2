@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Plus, Pencil, Trash2, Star, X, AlertCircle } from "lucide-react"
 import { saveMenuItem, deleteMenuItem, toggleItemAvailability } from "@/app/admin/dashboard/actions"
+import { PhotoUpload } from "./photo-upload"
 
 type Item = {
   id: string
@@ -18,6 +19,7 @@ type Item = {
   is_signature: boolean
   is_available: boolean
   category_id: string
+  photo_url?: string | null
 }
 type Category = { id: string; name: string; items: Item[] }
 
@@ -118,6 +120,13 @@ export function MenuManager({ categories }: { categories: Category[] }) {
                   House signature
                 </label>
               </div>
+              <div className="md:col-span-2">
+                <PhotoUpload
+                  key={editing.id ?? "new"}
+                  initialUrl={editing.photo_url ?? null}
+                  label="Dish photo (optional)"
+                />
+              </div>
               <div className="md:col-span-2 flex gap-3">
                 <Button type="submit" disabled={pending}>
                   {pending ? "Saving..." : "Save to the menu"}
@@ -158,6 +167,16 @@ export function MenuManager({ categories }: { categories: Category[] }) {
                   item.is_available ? "" : "opacity-60"
                 }`}
               >
+                {item.photo_url ? (
+                  <img
+                    src={item.photo_url}
+                    alt=""
+                    className="h-12 w-12 rounded object-cover border flex-shrink-0"
+                  />
+                ) : (
+                  <div className="h-12 w-12 rounded border border-dashed flex-shrink-0" />
+                )}
+
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="font-medium truncate">{item.name}</span>

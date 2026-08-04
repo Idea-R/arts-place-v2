@@ -50,7 +50,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/events" className="text-muted hover:text-primary transition-colors">
-                  Private Events
+                  Large Groups
                 </Link>
               </li>
               <li>
@@ -77,12 +77,12 @@ export function Footer() {
             <ul className="space-y-3 md:space-y-2 text-sm">
               <li>
                 <Link href="/events" className="text-muted hover:text-primary transition-colors">
-                  Private Events
+                  Large Groups
                 </Link>
               </li>
               <li>
                 <Link href="/catering" className="text-muted hover:text-primary transition-colors">
-                  Off-Site Catering
+                  Catering
                 </Link>
               </li>
               {/* "Wine Dinners" and "Gift Cards" were listed here as services. Neither

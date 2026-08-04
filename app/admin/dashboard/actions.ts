@@ -65,6 +65,9 @@ export async function saveMenuItem(formData: FormData): Promise<Result> {
   const categoryId = formData.get("category_id") as string
   const isSignature = formData.get("is_signature") === "on"
   const isAvailable = formData.get("is_available") !== "off"
+  // Empty string means the photo was removed, which must persist as NULL rather
+  // than an empty string the menu would try to render as an image.
+  const photoUrl = ((formData.get("photo_url") as string) || "").trim() || null
 
   if (!name) return { ok: false, error: "A dish needs a name." }
   if (!price) return { ok: false, error: "A dish needs a price. Write it exactly as it appears on the menu, for example \"$19\" or \"Small $20 / Large $29\"." }
@@ -77,6 +80,7 @@ export async function saveMenuItem(formData: FormData): Promise<Result> {
     category_id: categoryId,
     is_signature: isSignature,
     is_available: isAvailable,
+    photo_url: photoUrl,
   }
 
   if (id) {
@@ -129,6 +133,7 @@ export async function saveSpecial(formData: FormData): Promise<Result> {
   const price = (formData.get("price") as string || "").trim()
   const startsOn = (formData.get("starts_on") as string) || null
   const endsOn = (formData.get("ends_on") as string) || null
+  const photoUrl = ((formData.get("photo_url") as string) || "").trim() || null
 
   if (!title) return { ok: false, error: "A special needs a title." }
   if (endsOn && startsOn && endsOn < startsOn) {
@@ -139,6 +144,7 @@ export async function saveSpecial(formData: FormData): Promise<Result> {
     title,
     description: description || null,
     price: price || null,
+    photo_url: photoUrl,
     ends_on: endsOn || null,
     is_active: true,
   }

@@ -29,7 +29,12 @@ export async function TodaysSpecials() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {specials.map((s) => (
-            <Card key={s.id} className="border-none shadow-lg">
+            <Card key={s.id} className="border-none shadow-lg overflow-hidden">
+              {/* Only rendered when the kitchen actually uploaded one, so a special
+                  without a photo is a clean text card rather than a broken frame. */}
+              {s.photo_url && (
+                <img src={s.photo_url} alt={s.title} className="w-full h-44 object-cover" />
+              )}
               <CardContent className="p-6">
                 <div className="flex justify-between items-start gap-4 mb-2">
                   <h3 className="font-serif text-xl font-semibold text-foreground">{s.title}</h3>

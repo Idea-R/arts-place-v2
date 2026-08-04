@@ -110,36 +110,10 @@ export default function AdminLogin() {
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
-          {/* Shared demo credentials, shown on purpose. This build is for the Art's
-              Place team to try, so the sign in should not be the obstacle. It is a
-              single shared account against demo data.
-
-              This block is the switch: delete it and swap the shared account for
-              per-person ones when this stops being a demo. Until then the change log
-              will show one name for everyone, which is expected. */}
-          <div className="mt-6 rounded-md border border-dashed bg-muted/40 p-4 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Demo access
-            </p>
-            <p className="mt-2 font-mono text-sm text-foreground">demo@artsplacerp.com</p>
-            <p className="font-mono text-sm text-foreground">PastaKing2026</p>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="mt-3"
-              onClick={() => {
-                setEmail("demo@artsplacerp.com")
-                setPassword("PastaKing2026")
-              }}
-            >
-              Fill it in for me
-            </Button>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Everything you change here is real and shows on the live site. Sample data, so
-              experiment freely.
-            </p>
-          </div>
+          {/* Credentials are handed out directly, never printed here. */}
+          <p className="mt-6 text-center text-xs text-muted-foreground">
+            Accounts are issued by a manager.
+          </p>
         </CardContent>
       </Card>
     </div>

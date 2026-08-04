@@ -1,26 +1,27 @@
 import { Navigation } from "@/components/navigation"
-import { EventsHero } from "@/components/events-hero"
-import { EventTypes } from "@/components/event-types"
-import { EventGallery } from "@/components/event-gallery"
-import { EventBookingForm } from "@/components/event-booking-form"
-import { CateringMenu } from "@/components/catering-menu"
+import { GroupsSection } from "@/components/groups-section"
+import { CateringHonest } from "@/components/catering-honest"
 import { Footer } from "@/components/footer"
 
+// This route used to be the events pitch: a patio "seating up to 50", four event
+// packages, a gallery of events that never happened, and a booking form for a
+// booking system that does not exist. The restaurant runs no events programme.
+//
+// The URL is kept because it is linked from the nav and the footer, but everything
+// on it is now true: reservations for large groups, walk in for small tables, and
+// what the room actually offers.
 export const metadata = {
-  title: "Events & Catering - Art's Place | Private Parties & Corporate Events",
+  title: "Groups & Catering - Art's Place | Rohnert Park",
   description:
-    "Host your special event at Art's Place. Our beautiful outdoor patio seats up to 50 guests. Perfect for private parties, corporate events, wine dinners, and celebrations.",
+    "Reservations for large groups at Art's Place in Rohnert Park, and catering from the family behind the Pasta King.",
 }
 
-export default function EventsPage() {
+export default function GroupsPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <EventsHero />
-      <EventTypes />
-      <EventGallery />
-      <EventBookingForm />
-      <CateringMenu />
+      <GroupsSection />
+      <CateringHonest />
       <Footer />
     </main>
   )

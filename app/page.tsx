@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { WelcomeSection } from "@/components/welcome-section"
 import { TodaysSpecials } from "@/components/todays-specials"
 import { FeaturedItems } from "@/components/featured-items"
-import { EventSpaceSection } from "@/components/event-space-section"
+import { GroupsSection } from "@/components/groups-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { LocationSection } from "@/components/location-section"
 import { EmailSignup } from "@/components/email-signup"
@@ -22,7 +22,7 @@ export default function HomePage() {
       {/* Renders only when a special is actually running today. */}
       <TodaysSpecials />
       <FeaturedItems />
-      <EventSpaceSection />
+      <GroupsSection />
       <TestimonialsSection />
       <LocationSection />
       <EmailSignup />

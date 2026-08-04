@@ -10,7 +10,7 @@ export function Navigation() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Menu", href: "/menu" },
-    { name: "Events", href: "/events" },
+    { name: "Groups", href: "/events" },
     { name: "Catering", href: "/catering" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
