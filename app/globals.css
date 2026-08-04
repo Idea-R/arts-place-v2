@@ -260,3 +260,12 @@
     @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
   }
 }
+
+/* The mobile bar is fixed at the bottom, so content needs somewhere to end that is
+   not underneath it. On body rather than per page, so no route can forget. Above the
+   md breakpoint the bar is hidden and the padding goes with it. */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Playfair_Display } from "next/font/google"
 import "./globals.css"
+import { MobileNav } from "@/components/mobile-nav"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -78,7 +79,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>{children}</body>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>{children}        <MobileNav />
+      </body>
     </html>
   )
 }
