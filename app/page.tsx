@@ -4,7 +4,7 @@ import { WelcomeSection } from "@/components/welcome-section"
 import { TodaysSpecials } from "@/components/todays-specials"
 import { FeaturedItems } from "@/components/featured-items"
 import { GroupsSection } from "@/components/groups-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
+import { ReviewCards } from "@/components/review-cards"
 import { LocationSection } from "@/components/location-section"
 import { EmailSignup } from "@/components/email-signup"
 import { Footer } from "@/components/footer"
@@ -23,7 +23,7 @@ export default function HomePage() {
       <TodaysSpecials />
       <FeaturedItems />
       <GroupsSection />
-      <TestimonialsSection />
+      <ReviewCards />
       <LocationSection />
       <EmailSignup />
       <Footer />
